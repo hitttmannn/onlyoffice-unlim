@@ -129,3 +129,17 @@ Android Direct Editing проверяется штатным механизмо�
 ```sh
 sudo -u www-data php /var/www/nextcloud/occ config:app:set onlyoffice_mobile mobile_default --value=no
 ```
+
+## Явный выбор листа XLSX
+
+Над таблицей расположен блок «Лист книги» со списком листов и номером текущего.
+При переключении очищается поле редактирования старой ячейки. Для Word блок скрыт.
+Для обновления только интерфейса на уже установленной версии 0.2.0:
+
+```sh
+git pull --ff-only
+python3 scripts/update-mobile-panel.py --ui-only
+```
+
+Этот режим сохраняет предыдущие три UI-файла, не запускает occ upgrade,
+не меняет версии приложений и не переводит Nextcloud в maintenance.

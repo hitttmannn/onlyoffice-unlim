@@ -3,3 +3,5 @@
 #oo-mobile-panel{width:100%;height:calc(100vh - 50px);overflow:auto}#oo-mobile-panel header{top:0}
 
 .oo-zoom{align-items:center}.oo-zoom>*{min-width:46px;flex:0 1 auto}.oo-zoom output{min-width:64px;text-align:center}#oo-content{overflow:auto;touch-action:pan-x pan-y pinch-zoom}#oo-content>.para,#oo-content>.grid,#oo-content>select{zoom:var(--oo-document-zoom,1)}
+
+#sheet-picker{margin:16px 0;padding:12px;background:#e3ebf7;border-radius:9px}#sheet-picker label{display:block;font-weight:600;margin-bottom:8px}#sheet-select{display:block;width:100%;min-height:48px;background:white;color:#17243b}#sheet-count{margin:8px 0 0}
