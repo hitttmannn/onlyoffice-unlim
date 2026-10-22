@@ -14,3 +14,17 @@ fetch(settings.configUrl).then(r=>r.json()).then(config=>{
  script.onload=()=>{config.events={onError:e=>state('Ошибка редактора: '+e.data.errorCode)};window.editor=new DocsAPI.DocEditor('engine',config)};
  script.onerror=()=>state('Не удалось загрузить ONLYOFFICE');document.head.append(script);
 }).catch(e=>state(e.message));
+
+// Keep browser pinch zoom available and scale document content independently of controls.
+const viewport=document.querySelector('meta[name="viewport"]');
+if(viewport){viewport.content=viewport.content.split(',').filter(part=>!/^\s*(maximum-scale|minimum-scale|user-scalable)\s*=/i.test(part)).join(',')+', user-scalable=yes';}
+let documentZoom=100;
+function setDocumentZoom(value){
+ documentZoom=Math.max(50,Math.min(200,value));
+ $('#oo-content').style.setProperty('--oo-document-zoom',documentZoom/100);
+ $('#zoom-level').textContent=documentZoom+'%';
+ $('#zoom-out').disabled=documentZoom===50;$('#zoom-in').disabled=documentZoom===200;
+}
+$('#zoom-out').onclick=()=>setDocumentZoom(documentZoom-10);
+$('#zoom-in').onclick=()=>setDocumentZoom(documentZoom+10);
+$('#zoom-reset').onclick=()=>setDocumentZoom(100);

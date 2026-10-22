@@ -98,3 +98,34 @@ Nextcloud WebDAV и наличие уникального текста в реа
 Основа reverse proxy:
 https://helpcenter.onlyoffice.com/docs/installation/docs-community-proxy.aspx
 https://github.com/ONLYOFFICE/document-server-proxy/blob/master/apache/proxy-to-virtual-path.conf
+
+## Обновление 0.2.0: масштаб и мобильное открытие по умолчанию
+
+```sh
+cd /root/onlyoffice-unlim
+git pull --ff-only
+python3 scripts/update-mobile-panel.py
+```
+
+Сохраняет предыдущие файлы в private/mobile-ui-before-*, обновляет только свою
+панель и регистрирует глобальный middleware отдельного приложения. Штатный
+коннектор не патчится, контейнер Docs не пересоздаётся. occ upgrade регистрирует
+версию приложения (на короткое время включает maintenance); при уже ожидающем
+обновлении Nextcloud скрипт отказывается продолжать.
+
+В мобильном браузере и Android WebView обычный маршрут ONLYOFFICE DOCX/XLSX
+перенаправляется в собственную панель для уже допущенных пользователей. Desktop,
+публичные ссылки, шаблоны, read-only и остальные форматы сохраняют прежнее открытие.
+Android Direct Editing проверяется штатным механизмом одноразового токена; затем
+панель требует обычную веб-сессию. Если приложение не передаёт cookies, нужен
+вход в веб-окне один раз. Bearer-токены приложения и signed references не
+копируются в URL панели. Проверка реального Android-клиента на nc ещё нужна.
+
+Масштаб документа: 50–200%, кнопки −/+ и сброс. Браузерный pinch zoom разрешён,
+но отдельные Android WebView могут управлять им самостоятельно. После обновления
+закрыть старый редактор и открыть файл заново (при необходимости обновить страницу).
+
+Для отключения только автоматического направления:
+```sh
+sudo -u www-data php /var/www/nextcloud/occ config:app:set onlyoffice_mobile mobile_default --value=no
+```
