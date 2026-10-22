@@ -60,3 +60,17 @@ python3 scripts/demo.py stop
 Основание: официальный пример тестирования до интеграции
 https://www.onlyoffice.com/images/templates/whitepapers/pdf/integration_example.pdf
 Имя supervisor-сервиса определяется по фактическому контейнеру, а не угадывается.
+
+## Исправление пустого API URL примера (кандидат, требует проверки)
+
+На nc браузер получает script src корня сайта, который перенаправляет на welcome;
+прямой запрос web-apps/apps/api/documents/api.js возвращает application/javascript.
+В проверенных конфигурациях примера server.apiUrl отсутствует. Для проверки
+конфигурационного исправления: `python3 scripts/fix-demo-api.py apply`.
+Скрипт сохраняет первоначальный local.json (может содержать JWT, не присылать),
+добавляет только server.apiUrl и перезапускает только example в staging.
+Не меняет JWT, production и образ. После Ctrl+Shift+R проверить script src и
+открытие документа. Если результат не изменился, выполнить
+`python3 scripts/fix-demo-api.py restore`, затем исследовать установленный app.js.
+Сохранённая конфигурация находится внутри staging контейнера, при пересоздании
+изменение потеряется. Включать его в образ до успешной проверки нельзя.
