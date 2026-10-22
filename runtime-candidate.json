@@ -1,0 +1,7 @@
+{
+  "image": "onlyoffice/documentserver@sha256:bff1a9fd46f2b79ada776fd0447c3fccf66cbf44c1996ec9316efa8ac4ee3fd5",
+  "platform": "linux/amd64",
+  "observed_tag": "10.0",
+  "provenance": "Docker manifest output supplied by user from nc on 2026-10-22",
+  "status": "Candidate only; package, source correspondence and redistribution review pending"
+}
