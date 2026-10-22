@@ -107,3 +107,43 @@ entrypoint и сервисы Docs не запускаются, портов и �
 Наличие mobile/index.html не доказывает возможность редактирования. Отсутствие
 отдельных JS-файлов может означать упаковку в бинарник, а не отсутствие лимита.
 До изучения результата не выполнять build.sh и compose up.
+
+## Локальная baseline-сборка после проверки пакета
+
+На nc подтверждены digest из runtime-candidate.json, amd64 и пакет
+onlyoffice-documentserver 10.0.0-169. Отдельных server JS-файлов в runtime
+по ожидаемым путям не обнаружено. Mobile index присутствуют, функциональность
+редактирования не доказана. Нужна базовая проверка неизменённого upstream.
+
+```sh
+python3 scripts/prepare-stage.py
+```
+
+Команда проверяет ресурсы, создаёт private.env с новым случайным JWT (0600,
+игнорируется Git), собирает onlyoffice-unlim:10.0.0-169-baseline по digest и
+проверяет Compose без вывода секрета. Не является компиляцией DocumentServer
+из исходников, не меняет лимиты или мобильный UI, не публикует образ. Если
+Docker требует Buildx и его нет — сохранить ошибку; не переустанавливать Docker.
+
+После успешной подготовки:
+
+```sh
+docker compose --env-file private.env up -d --no-build docs
+docker compose --env-file private.env ps
+```
+
+Ожидать прогрева несколько минут, затем выполнить `python3 scripts/smoke.py`.
+Это проверка HTTP, не сохранения документов. Если проверка не проходит,
+сначала получить состояние:
+
+```sh
+docker compose --env-file private.env ps
+docker compose --env-file private.env ps -q docs | xargs -r docker inspect --format '{{.Name}} status={{.State.Status}} oom={{.State.OOMKilled}} restarts={{.RestartCount}}'
+free -m
+df -h .
+```
+
+При OOM или ухудшении production остановить только тестовый сервис:
+`docker compose --env-file private.env stop docs`. Не использовать down -v, prune
+и команды для onlyoffice-document-server. Сырые логи перед отправкой проверить
+на JWT, URL с токенами, персональные сведения; полный inspect/env не присылать.
