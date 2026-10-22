@@ -14,6 +14,28 @@ production ради теста и не снижать его лимиты. Ес�
 reverse proxy, версию Nextcloud и ONLYOFFICE connector. Не присылать полный
 `docker inspect`, `.env`, `occ config:list` или Compose config в чат: там секреты.
 
+### Docker Compose на Debian 13
+
+В Debian 13 пакет называется `docker-compose` (версия 2.x); не требуется
+переводить рабочий Docker на другой репозиторий. Сначала проверить план:
+
+```sh
+apt-get update
+apt-get -s install --no-install-recommends --no-upgrade docker-compose
+```
+
+Если план добавляет только Compose без удаления/обновления Docker, containerd,
+runc и других компонентов рабочего сервера, установить:
+
+```sh
+apt-get install --no-install-recommends --no-upgrade docker-compose
+docker compose version
+```
+
+Если план затрагивает рабочие компоненты — остановиться и изучить его.
+Если доступен только вызов `docker-compose`, использовать его вместо
+`docker compose` в дальнейших командах; требуется версия 2.x.
+
 ## 2. Зафиксировать источники и выбрать путь
 
 `bash scripts/lock-source.sh` получает только исходники, не меняет production.
