@@ -1,3 +1,6 @@
+> Архивный план сервера nc / Historical nc deployment plan.
+> Generic installation: [Русский](../docs/INSTALL.ru.md) · [English](../docs/INSTALL.en.md).
+
 # nc: подготовка интеграции и переключения
 
 Подтверждено пользователем 22.10.2026:

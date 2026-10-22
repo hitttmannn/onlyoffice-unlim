@@ -1,3 +1,7 @@
+> Историческая инструкция для конкретного сервера nc. Для других серверов:
+> [Русская инструкция](../docs/INSTALL.ru.md) / [English guide](../docs/INSTALL.en.md).
+> Historical owner-specific runbook; do not use its removal scripts on other hosts.
+
 # Развёртывание Docs 10 и собственного интерфейса на nc
 
 Проверено локально на Nextcloud 35.0.2 и официальном connector 10.2.1. Приложение

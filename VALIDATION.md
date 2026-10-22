@@ -54,3 +54,14 @@ Desktop route остаётся в штатном редакторе. Реаль�
 Выбор листов: DOM-проверка при ширине 390px подтвердила видимый подписанный
 список двух листов, смену текущего листа/данных и очистку старой выбранной ячейки;
 в Word переключатель скрыт. Office API в этом обновлении не менялся.
+
+## Portable configuration / Переносимая конфигурация
+
+README and generic installation guides are available in Russian and English.
+Portable installation tested with temporary app/plugin directories and mocked occ:
+custom host/port/subdirectory, Docker occ argv, canonical HTTPS origin, refusal
+to overwrite, unsupported Nextcloud rejection, no writes to original connector,
+no global upgrade. Compose configuration validated with dummy JWT (no services
+started). Local connector installed_version query returns 10.2.1 as expected.
+This does not establish compatibility with untested Nextcloud/Docs versions or
+constitute an end-to-end deployment test on a second production host.

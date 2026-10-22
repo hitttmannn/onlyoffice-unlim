@@ -1,0 +1,11 @@
+{
+  "nextcloud_url": "https://cloud.example.com",
+  "docs_url": "https://docs.example.com/",
+  "docs_internal_url": "http://127.0.0.1:18082/",
+  "app_dir": "/var/www/nextcloud/custom_apps/onlyoffice_mobile",
+  "plugin_dir": "/opt/onlyoffice-unlim/mobile-panel",
+  "occ_command": ["sudo", "-u", "www-data", "php", "/var/www/nextcloud/occ"],
+  "owner_uid": 33,
+  "owner_gid": 33,
+  "allowed_users": []
+}

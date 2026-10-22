@@ -1,0 +1,30 @@
+name: onlyoffice-mobile
+services:
+  docs:
+    image: onlyoffice/documentserver@sha256:bff1a9fd46f2b79ada776fd0447c3fccf66cbf44c1996ec9316efa8ac4ee3fd5
+    environment:
+      JWT_ENABLED: 'true'
+      JWT_SECRET: ${JWT_SECRET:?Set the same JWT secret as the Nextcloud connector}
+      JWT_HEADER: ${JWT_HEADER:-Authorization}
+    ports:
+      - '${DOCS_BIND_IP:-127.0.0.1}:${DOCS_PORT:-18082}:80'
+    mem_limit: ${DOCS_MEMORY:-2g}
+    memswap_limit: ${DOCS_MEMORY_SWAP:-3g}
+    cpus: ${DOCS_CPUS:-1.0}
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: ${MOBILE_PLUGIN_DIR:?Set the absolute rendered plugin directory}
+        target: /var/www/onlyoffice/documentserver/sdkjs-plugins/mobile-panel
+        read_only: true
+        bind:
+          create_host_path: false
+      - docs_data:/var/www/onlyoffice/Data
+      - docs_lib:/var/lib/onlyoffice
+      - docs_db:/var/lib/postgresql
+      - docs_logs:/var/log/onlyoffice
+volumes:
+  docs_data:
+  docs_lib:
+  docs_db:
+  docs_logs:

@@ -1,15 +1,15 @@
-# Простые документы 0.1.0
+# Простые документы / Simple Documents 0.2.0
 
-Экспериментальная собственная панель DOCX/XLSX на открытом plugin API Docs.
-Работает с Nextcloud 35 и установленным ONLYOFFICE connector 10.2.1.
-Устанавливать через ../../deployment/NC-MOBILE-INSTALL.md.
+[Русский обзор](../../README.ru.md) · [English overview](../../README.md)
 
-Доступ: администраторы или точные UID в JSON app config allowed_users.
-Файлы выбираются из корня личных «Файлов». Использовать копии простых документов:
-изменение абзаца DOCX не сохраняет его внутреннее форматирование/объекты.
-Публичные ссылки, сложные документы и полный набор функций не поддерживаются.
-Тесты выполнены в мобильной эмуляции, реальные телефоны ещё не проверены.
+Установка на свой Nextcloud: [Русский](../../docs/INSTALL.ru.md) ·
+[English installation guide](../../docs/INSTALL.en.md).
 
-Авторизация, download/callback и сохранение файлов используют установленный
-коннектор; собственный backend не хранит отдельные копии пользовательских файлов.
-AGPL-3.0-only; см. LICENSE и NOTICE.md.
+Experimental DOCX/XLSX interface using the public desktop plugin API and the
+installed ONLYOFFICE connector. Tested with Nextcloud 35 / connector 10.2.1 /
+Docs 10.0.0-169. Default access: administrators or exact UIDs in allowed_users.
+Current UI language: Russian.
+
+Use copies: replacing a DOCX paragraph removes inline formatting and embedded
+objects. XLSX currently displays A1:H20 of the selected worksheet. Not a complete
+mobile office suite. License: AGPL-3.0-only; see LICENSE and NOTICE.md.
