@@ -1,0 +1,22 @@
+name: onlyoffice-unlim-mobile-prototype
+services:
+  docs:
+    image: onlyoffice/documentserver@sha256:bff1a9fd46f2b79ada776fd0447c3fccf66cbf44c1996ec9316efa8ac4ee3fd5
+    environment:
+      JWT_ENABLED: 'true'
+      JWT_SECRET: ${JWT_SECRET:?Run python3 setup.py}
+    ports:
+      - '127.0.0.1:18780:80'
+      - '127.0.0.1:18781:8090'
+    mem_limit: 2g
+    memswap_limit: 3g
+    cpus: 2
+    pids_limit: 1024
+    restart: 'no'
+    entrypoint: ['/bin/sh', '-c']
+    command:
+      - 'python3 /prototype/server.py & exec /app/ds/run-document-server.sh'
+    volumes:
+      - .:/prototype:ro
+      - ./data:/prototype-data
+      - ./loopback.conf:/etc/nginx/conf.d/local-prototype-loopback.conf:ro

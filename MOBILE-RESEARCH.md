@@ -73,3 +73,10 @@ Desktop standalone baseline на nc прошёл open/edit/save/download, вкл
 пересоздание тестового контейнера. Mobile web DOCX — read only. Мобильный
 нативный путь, 21+ сессий и интеграция Nextcloud с новым сервером не проверены.
 Полная source compilation, публикация GHCR и переключение production не выполнены.
+
+## Обновление: собственный прототип
+
+В prototype-mobile/ реализован отдельный UI через background-плагин и Office API
+поверх desktop-движка. Локальные проверки DOCX/XLSX прошли в Android-эмуляции
+браузера; это не подмена отсутствующего коммерческого addon. См. TEST-RESULTS.md
+в каталоге прототипа. Реальный телефон и Nextcloud ещё требуют проверки.

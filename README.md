@@ -20,3 +20,11 @@ Dockerfile упаковывает готовую официальную базу
 Инструкции: RUNBOOK.md, DEMO-TEST.md, ACCEPTANCE.md, BACKUP-ROLLBACK.md.
 Результаты: VALIDATION.md. Все private.env, artifacts и тестовые документы
 исключены из Git. Не публиковать JWT, credentials и пользовательские файлы.
+
+## Экспериментальный собственный интерфейс
+
+В prototype-mobile/ добавлен отдельный локальный прототип для DOCX/XLSX на
+открытом plugin API desktop-движка. Есть собственная панель для узкого экрана;
+прошли эмулированные браузерные проверки изменения/сохранения и повторного
+открытия. Это НЕ готовый mobile addon и НЕ интеграция Nextcloud. Ограничения и
+протокол проверок описаны в prototype-mobile/README.md и TEST-RESULTS.md.

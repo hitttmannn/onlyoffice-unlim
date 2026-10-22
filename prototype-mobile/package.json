@@ -1,0 +1,9 @@
+{
+  "name": "onlyoffice-unlim-mobile-prototype",
+  "private": true,
+  "version": "0.0.1",
+  "license": "AGPL-3.0-only",
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}
