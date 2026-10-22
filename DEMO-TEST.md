@@ -74,3 +74,19 @@ https://www.onlyoffice.com/images/templates/whitepapers/pdf/integration_example.
 `python3 scripts/fix-demo-api.py restore`, затем исследовать установленный app.js.
 Сохранённая конфигурация находится внутри staging контейнера, при пересоздании
 изменение потеряется. Включать его в образ до успешной проверки нельзя.
+
+## ECONNREFUSED 127.0.0.1:18080 при скачивании документа
+
+Подтверждено журналом nc: example формирует download URL с браузерным портом
+18080, а DocService внутри контейнера не имеет такого listener.
+`python3 scripts/fix-demo-loopback.py apply` добавляет только loopback listener
+127.0.0.1:18080 внутри staging и proxy на 127.0.0.1:80 с сохранением Host.
+Nginx проверяется перед reload; при ошибке файл восстанавливается.
+JWT, SSRF-флаги и host port mapping не меняются. Откат:
+`python3 scripts/fix-demo-loopback.py restore`. При пересоздании контейнера
+изменение пропадёт; фикс не входит в image до проверки.
+
+Отдельная ошибка API URL пока не исправлена: server.apiUrl override на nc не
+помог и был откачен. Для текущего диагностического теста используется ручная
+загрузка api.js в браузере. После проверки download/save требуется постоянное
+исправление загрузки API и повторная проверка без браузерной инъекции.
