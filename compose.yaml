@@ -1,0 +1,26 @@
+name: onlyoffice-unlim-stage
+services:
+  docs:
+    image: ${CANDIDATE_IMAGE:?Set CANDIDATE_IMAGE}
+    pull_policy: never
+    ports:
+      - "127.0.0.1:18080:80"
+    environment:
+      JWT_ENABLED: "true"
+      JWT_SECRET: ${JWT_SECRET:?Set a unique staging JWT_SECRET}
+      JWT_HEADER: Authorization
+    cpus: 1.0
+    mem_limit: 1536m
+    memswap_limit: 2g
+    pids_limit: 512
+    restart: "no"
+    volumes:
+      - stage_data:/var/www/onlyoffice/Data
+      - stage_lib:/var/lib/onlyoffice
+      - stage_logs:/var/log/onlyoffice
+      - stage_db:/var/lib/postgresql
+volumes:
+  stage_data:
+  stage_lib:
+  stage_logs:
+  stage_db:

@@ -1,0 +1,6 @@
+*.env
+!example.env
+private/
+artifacts/
+upstream/
+__pycache__/
