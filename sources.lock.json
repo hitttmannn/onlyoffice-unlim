@@ -1,0 +1,14 @@
+{
+  "release": "v10.0.0",
+  "documentserver": "16bac9f9ad54c8145a58e23446c504b5727729ac",
+  "components": {
+    "core": "8d143f09d0fe13f663db5a2394ab8819b1273957",
+    "core-fonts": "7030c6681fb5bbed560675cb42422f91df15d5c9",
+    "dictionaries": "d3223bbb777883db66ac3cd249f71c6ebdc992c7",
+    "document-formats": "27188bac1f82c6ff0e7f02235cdbca22053a768e",
+    "document-templates": "0a52fb76fa53fddf7d70da28878537cde3d29421",
+    "sdkjs": "3e19b57c8dfd43d876e4a9c1023d555632b61505",
+    "server": "3e71b09caf66c4ac0d43106ea4922f6ddfa76043",
+    "web-apps": "f4f1c88937717f9b41e2f8a864b8aeffa21e3a2a"
+  }
+}
