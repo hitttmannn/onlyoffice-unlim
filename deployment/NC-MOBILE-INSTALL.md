@@ -147,3 +147,17 @@ python3 scripts/update-mobile-panel.py --ui-only
 
 Этот режим сохраняет предыдущие три UI-файла, не запускает occ upgrade,
 не меняет версии приложений и не переводит Nextcloud в maintenance.
+
+## Лимит памяти Docs на nc
+
+Лимит production-сервиса docs увеличен до 4 ГиБ RAM. `memswap_limit: 4608m`
+задаёт общий потолок RAM+swap: 4 ГиБ RAM и до 512 МиБ swap. Это потолок,
+не предварительное выделение всей памяти. Применение к существующему контейнеру
+без пересоздания (после git pull):
+
+```sh
+docker update --memory 4g --memory-swap 4608m onlyoffice-unlim-nc-mobile-docs-1
+```
+
+Compose хранит те же значения для следующих пересозданий. Этот раздел относится
+к конкретному nc, а не меняет начальные лимиты переносимого compose.mobile.yaml.

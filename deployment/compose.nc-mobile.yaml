@@ -8,8 +8,8 @@ services:
       JWT_HEADER: ${JWT_HEADER:-Authorization}
     ports:
       - '127.0.0.1:18082:80'
-    mem_limit: 1536m
-    memswap_limit: 2g
+    mem_limit: 4g
+    memswap_limit: 4608m
     cpus: 1.0
     pids_limit: 1024
     restart: unless-stopped
